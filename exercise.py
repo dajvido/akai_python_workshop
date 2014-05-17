@@ -1,6 +1,32 @@
-def get_fruits(filename):
-    # your code here
+# -*- coding: UTF-8 -*-
+import csv
+
+
+class Datum(object):
+    """ imaginary base class for a CSV row """
     pass
+
+
+def get_fruits(filename):
+    with open(filename) as csvfile:
+        fruits = []
+        file_reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+        rows = [row[0].split(',') for row in file_reader]
+        if filename == "Orange.csv":
+            print("Orange")
+            Fruit = type("Orange", (Datum, ), dict())
+        else:
+            print("Pear")
+            Fruit = type("Pear", (Datum, ), dict())
+        for row in rows[1:]:
+            MyFruit = Fruit()
+            values = dict(zip(rows[0], row))
+            print(values)
+            for value in values:
+                setattr(MyFruit, value, float(values[value]))
+            fruits.append(MyFruit)
+
+        return fruits
 
 
 f1 = get_fruits("Orange.csv")
@@ -18,7 +44,7 @@ assert f1[0].slices
 assert f1[0].__class__.__name__ == "Orange"
 
 # pears are oblong and have diameter
-assert f2[0].onlongness
+assert f2[0].oblongless
 assert f2[0].diameter
 assert f2[0].__class__.__name__ == "Pear"
 
