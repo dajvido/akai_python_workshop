@@ -1,5 +1,11 @@
 AKAI Python workshops code templates 2014/05/17
 
+## WiFi
+* SSID: egnest
+* security: none
+* login: guest
+* passwd: egnyte42
+
 ## Before we start
 Live wiki https://hackpad.com/AKAI-b89UStvBNaA
 
