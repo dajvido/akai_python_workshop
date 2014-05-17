@@ -12,16 +12,10 @@ def get_fruits(filename):
         fruits = []
         file_reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
         rows = [row[0].split(',') for row in file_reader]
-        if filename == "Orange.csv":
-            print("Orange")
-            Fruit = type("Orange", (Datum, ), dict())
-        else:
-            print("Pear")
-            Fruit = type("Pear", (Datum, ), dict())
+        Fruit = type(filename.split('.')[0], (Datum, ), dict())
         for row in rows[1:]:
             MyFruit = Fruit()
             values = dict(zip(rows[0], row))
-            print(values)
             for value in values:
                 setattr(MyFruit, value, float(values[value]))
             fruits.append(MyFruit)
